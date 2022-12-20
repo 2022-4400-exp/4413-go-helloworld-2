@@ -28,4 +28,4 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/2022-4400-exp/4413-go-helloworld-2:${{ github.sha }
+            ghcr.io/2022-4400-exp/4413-go-helloworld-2:${{ github.sha }}
