@@ -26,7 +26,6 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm64
           context: .
-          file: ./Dockerfile.distroless
           push: true
           tags: |
             ghcr.io/2022-4400-exp/4413-go-helloworld-2:${{ github.sha }}
