@@ -16,5 +16,5 @@ spec:
         app: go-helloworld-2
     spec:
       containers:
-        - image: ghcr.io/2022-4400-exp/4413-go-helloworld-2:3bc0211c4db7cc697399993db5609b5ba30e6330
+        - image: ghcr.io/2022-4400-exp/4413-go-helloworld-2:3e3efa327a40ef690150827e5eb871c1ebae4f1e
           name: go-helloworld-2
