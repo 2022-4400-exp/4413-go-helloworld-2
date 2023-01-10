@@ -5,11 +5,16 @@ WORKDIR /build
 ARG TARGETOS
 ARG TARGETARCH
 
-COPY . .
+COPY main.go go.mod ./
 
-RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -o helloworld
+RUN --mount=type=cache,target=/go/pkg/mod \
+    go mod tidy
+RUN --mount=type=cache,target=/go/pkg/mod \
+    --mount=type=cache,target=/root/.cache/go-build \
+    CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -ldflags="-s -w -extldflags" -o helloworld
 
-FROM gcr.io/distroless/static
+
+FROM scratch
 
 COPY --from=build /build/helloworld /
 
