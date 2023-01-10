@@ -1,4 +1,4 @@
-FROM golang:alpine as build
+FROM --platform=${BUILDPLATFORM} golang:alpine as build
 
 WORKDIR /build
 
@@ -9,7 +9,7 @@ COPY . .
 
 RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -o helloworld
 
-FROM gcr.io/distroless/static-debian11
+FROM gcr.io/distroless/static
 
 COPY --from=build /build/helloworld /
 

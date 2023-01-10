@@ -20,13 +20,13 @@ func main() {
 
 func Hello() echo.HandlerFunc {
 	return func(c echo.Context) error {
-		return c.String(http.StatusOK, "4413: さぶうぇいさん「寝てるけど、何」")
+		return c.String(http.StatusOK, "4413: 思慮深いウニ「俺が思うに...」")
 	}
 }
 
 func ApiHelloGet() echo.HandlerFunc {
 	return func(c echo.Context) error {
-		return c.JSON(http.StatusOK, map[string]interface{}{"studentId": "4413", "message": "さぶうぇいさん「寝てるけど、何」"})
+		return c.JSON(http.StatusOK, map[string]interface{}{"studentId": "4413", "message": "思慮深いウニ「俺が思うに...」"})
 	}
 }
 

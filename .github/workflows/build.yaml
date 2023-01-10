@@ -30,3 +30,19 @@ jobs:
           tags: |
             ghcr.io/2022-4400-exp/4413-go-helloworld-2:${{ github.sha }}
             ghcr.io/2022-4400-exp/4413-go-helloworld-2:latest
+
+      - name: Update manifest image tag
+        id: update-image-tag
+        continue-on-error: true
+        run: |
+          yq eval '.spec.template.spec.containers[0].image = "ghcr.io/2022-4400-exp/4413-go-helloworld-2:"+env(GITHUB_SHA)' -i ./manifests/deployment.yaml
+          git diff --name-only --exit-code
+
+      - name: Commit/Push manifest
+        if: steps.update-image-tag.outcome == 'failure'
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email github-actions[bot]@users.noreply.github.com
+          git add .
+          git commit --author=. -m "Update image tag to $GITHUB_SHA"
+          git push
