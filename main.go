@@ -13,7 +13,7 @@ func main() {
 
 	e.GET("/hello", Hello())
 	e.GET("/api/hello", ApiHelloGet())
-	e.GET("/shiryobukai-uni", ShiryobukaiUni())
+	e.GET("/uni", ShiryobukaiUni())
 
 	e.Start(":8080")
 }
